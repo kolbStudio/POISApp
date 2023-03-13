@@ -10,8 +10,8 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
 import com.testpois.features.getPois.ui.PoiViewModel
-import com.testpois.ui.common.TopBar
-import com.testpois.ui.common.Ui
+import com.testpois.ui.common.BaseTopBar
+import com.testpois.ui.navigation.AppNavigation
 import com.testpois.ui.theme.TextStadium
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,16 +25,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             Scaffold(
-                topBar = { TopBar() },
+                topBar = { BaseTopBar() },
                 containerColor = TextStadium
             ) { padding ->
                 Box(modifier = Modifier.padding(padding)) {
-                    Ui(viewModel = poiViewModel)
+                    AppNavigation(viewModel = poiViewModel)
                 }
             }
         }
     }
 
 }
-
-
