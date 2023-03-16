@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -61,21 +62,21 @@ fun PoiDetail(
         tonalElevation = 7.dp,
         shape = ShapeDefaults.Large,
         modifier = Modifier
-            .padding(vertical = 8.dp, horizontal = 32.dp)
+            .padding(vertical = 8.dp, horizontal = 16.dp)
     ) {
-        Column() {
+        Column(modifier = Modifier.background(colorResource(id = R.color.primary_color))) {
             Surface(
                 shadowElevation = 20.dp,
                 tonalElevation = 7.dp,
                 shape = ShapeDefaults.Large,
-                modifier = Modifier.padding(16.dp)
+                modifier = Modifier.padding(8.dp)
             ) {
                 Image(
                     painter = imagerPainter,
                     contentDescription = "",
                     modifier = Modifier
                         .fillMaxWidth()
-                        .height(200.dp),
+                        .height(180.dp),
                     contentScale = ContentScale.FillBounds
                 )
             }
@@ -99,7 +100,8 @@ fun PoiDetail(
 
                 Text(
                     text = "Location in: $geocoordinates",
-                    fontSize = 20.sp,
+                    fontSize = 12.sp,
+                    fontWeight = FontWeight.Bold,
                     color = TextStadium
                 )
 
@@ -117,7 +119,8 @@ fun TopAppBarDetail(navController: NavController) {
             Text(
                 text = stringResource(id = R.string.text_back),
                 fontSize = 18.sp,
-                color = TextStadium
+                color = TextStadium,
+                modifier = Modifier.clickable { navController.popBackStack() }
             )
         },
         navigationIcon = {

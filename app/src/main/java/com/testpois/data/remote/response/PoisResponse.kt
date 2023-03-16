@@ -1,4 +1,4 @@
-package com.testpois.features.getPois.data.model.response
+package com.testpois.data.remote.response
 
 import com.google.gson.annotations.SerializedName
 
@@ -10,5 +10,5 @@ data class PoisDTO(
     @SerializedName("id") val id: Int,
     @SerializedName("title") val title: String,
     @SerializedName("geocoordinates") val geoCoordinates: String,
-    @SerializedName("image") val image: String,
+    @SerializedName("image") val image: String
 )

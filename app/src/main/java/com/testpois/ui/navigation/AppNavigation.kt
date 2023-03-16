@@ -21,7 +21,7 @@ fun AppNavigation(viewModel: PoiViewModel) {
         navController = navController,
         startDestination = Routes.PoiScreen.route,
     ) {
-        composable(Routes.PoiScreen.route) { PoiScreen(uiState, navController) }
+        composable(Routes.PoiScreen.route) { PoiScreen(uiState, navController, viewModel) }
         composable(
             route = Routes.PoiDetailScreen.route,
             arguments = listOf(

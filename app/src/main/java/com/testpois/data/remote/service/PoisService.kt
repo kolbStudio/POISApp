@@ -1,6 +1,6 @@
-package com.testpois.features.getPois.data.service
+package com.testpois.data.remote.service
 
-import com.testpois.features.getPois.data.model.response.PoisDataDTO
+import com.testpois.data.remote.response.PoisDataDTO
 import retrofit2.Response
 import retrofit2.http.GET
 

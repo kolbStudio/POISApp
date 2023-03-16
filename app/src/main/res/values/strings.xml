@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">POISApp</string>
     <string name="text_back">Back</string>
+    <string name="dialog_yes_no_title">Erase Point of Interest</string>
+    <string name="dialog_yes_no_answer">Do you want to erase this Point of Interest?</string>
+    <string name="dialog_yes_no_confirm_button">Confirm</string>
+    <string name="dialog_yes_no_dismiss_button">Dismiss</string>
 </resources>

@@ -1,7 +1,7 @@
 package com.testpois.core.di
 
 import com.testpois.core.common.BASE_URL
-import com.testpois.features.getPois.data.service.PoisService
+import com.testpois.data.remote.service.PoisService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -25,7 +25,7 @@ class NetworkModule {
 
     @Singleton
     @Provides
-    fun providePoidsClient(retrofit: Retrofit): PoisService {
+    fun providePoisClient(retrofit: Retrofit): PoisService {
         return retrofit.create(PoisService::class.java)
     }
 }
