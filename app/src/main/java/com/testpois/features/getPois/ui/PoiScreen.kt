@@ -6,6 +6,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -101,22 +102,22 @@ fun PoiList(
         }
     ) {
 
-        LazyColumn() {
+        LazyColumn {
             val searchedText = state.value.text
-            filteredPois = if (searchedText.isEmpty()) poisList
-            else {
-                val resultList = ArrayList<Pois>()
-                for (title in poisList) {
-                    if (title.title.lowercase(Locale.getDefault())
-                            .contains(searchedText.lowercase(Locale.getDefault()))
-                    ) {
-                        resultList.add(title)
+            filteredPois =
+                if (searchedText.isEmpty()) {
+                    poisList
+                } else {
+                    val resultList = ArrayList<Pois>()
+                    for (title in poisList) {
+                        if (title.title.lowercase(Locale.getDefault())
+                                .contains(searchedText.lowercase(Locale.getDefault()))
+                        ) resultList.add(title)
                     }
+                    resultList
                 }
-                resultList
-            }
 
-            items(filteredPois) {
+            items(filteredPois, key = { it.id }) {
                 ItemPoi(pois = it, navController, poiViewModel)
             }
         }
@@ -126,7 +127,7 @@ fun PoiList(
 
 @Composable
 fun ItemPoi(pois: Pois, navController: NavController, poiViewModel: PoiViewModel) {
-    val showConfirmationDialog by poiViewModel.showConfirmationDialog.observeAsState(false)
+    val showConfirmationDialog by poiViewModel.showConfirmationDialog.observeAsState(Pair(false, null))
     val imagerPainter = rememberAsyncImagePainter(model = pois.image)
     val encodedUrl = URLEncoder.encode(pois.image, StandardCharsets.UTF_8.toString())
 
@@ -136,10 +137,10 @@ fun ItemPoi(pois: Pois, navController: NavController, poiViewModel: PoiViewModel
         shape = ShapeDefaults.Large,
         modifier = Modifier
             .padding(vertical = 8.dp, horizontal = 16.dp)
-            .pointerInput(Unit) {
+            .pointerInput(pois) {
                 detectTapGestures(
                     onLongPress = {
-                        poiViewModel.showConfirmationClick()
+                        poiViewModel.showConfirmationClick(pois)
                     }
                 )
             }
@@ -171,9 +172,9 @@ fun ItemPoi(pois: Pois, navController: NavController, poiViewModel: PoiViewModel
             }
 
             ConfirmationDeleteDialog(
-                show = showConfirmationDialog,
+                show = showConfirmationDialog.first,
                 onDismiss = { poiViewModel.onDialogDismissDelete() },
-                onConfirm = { poiViewModel.onRemovePoi(pois) }
+                onConfirm = { poiViewModel.onRemovePoi(showConfirmationDialog.second!!) }
             )
 
             Column(

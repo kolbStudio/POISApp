@@ -29,8 +29,8 @@ class PoiViewModel @Inject constructor(
     private val _uiState = MutableStateFlow(PoiUiState())
     val uiState: StateFlow<PoiUiState> = _uiState.asStateFlow()
 
-    private val _showConfirmationDialog = MutableLiveData<Boolean>()
-    val showConfirmationDialog: LiveData<Boolean> = _showConfirmationDialog
+    private val _showConfirmationDialog = MutableLiveData<Pair<Boolean, Pois?>>()
+    val showConfirmationDialog: LiveData<Pair<Boolean, Pois?>> = _showConfirmationDialog
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
@@ -51,18 +51,17 @@ class PoiViewModel @Inject constructor(
             .collect()
     }
 
-    fun showConfirmationClick() {
-        _showConfirmationDialog.value = true
+    fun showConfirmationClick(pois: Pois) {
+        _showConfirmationDialog.value = Pair(true, pois)
     }
 
     fun onDialogDismissDelete() = viewModelScope.launch {
-        _showConfirmationDialog.value = false
+        _showConfirmationDialog.value = Pair(false, null)
     }
-
     fun onRemovePoi(pois: Pois) = viewModelScope.launch {
         deletePoiUseCase.invoke(pois)
         getPois()
-        _showConfirmationDialog.value = false
+        _showConfirmationDialog.value = Pair(false, null)
     }
 
 }
