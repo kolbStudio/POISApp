@@ -22,6 +22,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -29,7 +30,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
+import com.google.android.gms.maps.model.LatLng
 import com.testpois.R
+import com.testpois.ui.common.ShowLocation
 import com.testpois.ui.theme.TextStadium
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -38,14 +41,16 @@ fun PoiDetailScreen(
     navController: NavController,
     title: String?,
     geocoordinates: String?,
-    image: String?
+    image: String?,
+    viewModel: PoiViewModel
 ) {
+
     Scaffold(
         topBar = { TopAppBarDetail(navController) },
         containerColor = TextStadium
     ) { padding ->
         Box(modifier = Modifier.padding(padding)) {
-            PoiDetail(title, geocoordinates, image)
+            PoiDetail(title, geocoordinates, image, viewModel)
         }
     }
 }
@@ -54,8 +59,10 @@ fun PoiDetailScreen(
 fun PoiDetail(
     title: String?,
     geocoordinates: String?,
-    image: String?
+    image: String?,
+    viewModel: PoiViewModel
 ) {
+    val context = LocalContext.current
     val imagerPainter = rememberAsyncImagePainter(image)
     Surface(
         shadowElevation = 20.dp,
@@ -89,19 +96,20 @@ fun PoiDetail(
 
             ) {
 
-                Text(
-                    text = "" + title,
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 20.sp,
-                    color = TextStadium
-                )
+                if (title != null && geocoordinates != null)
+                    ShowLocation(
+                        latLng = viewModel.getLocation(geocoordinates, context),
+                        title = title,
+                        viewModel = viewModel,
+                        address = geocoordinates
+                    )
 
                 SpacerHeight(size = 16.dp)
 
                 Text(
-                    text = "Location in: $geocoordinates",
-                    fontSize = 12.sp,
+                    text = "" + title,
                     fontWeight = FontWeight.Bold,
+                    fontSize = 20.sp,
                     color = TextStadium
                 )
 
@@ -127,6 +135,7 @@ fun TopAppBarDetail(navController: NavController) {
             Icon(
                 imageVector = Icons.Default.ArrowBack,
                 contentDescription = "Back Button",
+                tint=colorResource(id = R.color.primary_color),
                 modifier = Modifier.clickable { navController.popBackStack() }
             )
         }

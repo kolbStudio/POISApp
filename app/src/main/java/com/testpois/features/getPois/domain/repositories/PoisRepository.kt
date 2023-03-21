@@ -1,4 +1,4 @@
-package com.testpois.features.getPois.repositories
+package com.testpois.features.getPois.domain.repositories
 
 import com.testpois.domain.extensions.DomainError
 import com.testpois.domain.extensions.Either

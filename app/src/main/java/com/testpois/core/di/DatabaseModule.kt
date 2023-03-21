@@ -5,7 +5,7 @@ import androidx.room.Room
 import com.testpois.core.common.DATABASE_NAME
 import com.testpois.data.local.database.dao.PoiDao
 import com.testpois.data.local.database.PoiDataBase
-import com.testpois.features.getPois.repositories.PoisRepository
+import com.testpois.features.getPois.domain.repositories.PoisRepository
 import com.testpois.data.dataSource.PoisLocalDataSource
 import com.testpois.data.dataSource.PoisRemoteDataSource
 import com.testpois.data.repository.PoisRepositoryImpl
