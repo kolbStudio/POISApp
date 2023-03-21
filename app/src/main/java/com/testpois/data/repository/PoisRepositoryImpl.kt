@@ -9,7 +9,7 @@ import com.testpois.domain.extensions.eitherFailure
 import com.testpois.domain.extensions.eitherSuccess
 import com.testpois.domain.extensions.getOrNull
 import com.testpois.features.getPois.domain.model.Pois
-import com.testpois.features.getPois.repositories.PoisRepository
+import com.testpois.features.getPois.domain.repositories.PoisRepository
 import javax.inject.Inject
 
 class PoisRepositoryImpl @Inject constructor(

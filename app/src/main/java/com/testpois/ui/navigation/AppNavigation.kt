@@ -35,8 +35,7 @@ fun AppNavigation(viewModel: PoiViewModel) {
             val geocoordinates = backStackEntry.arguments?.getString("geocoordinates")
             val image = backStackEntry.arguments?.getString("image")
 
-            PoiDetailScreen(navController, title, geocoordinates, image)
-
+            PoiDetailScreen(navController, title, geocoordinates, image, viewModel)
 
         }
     }

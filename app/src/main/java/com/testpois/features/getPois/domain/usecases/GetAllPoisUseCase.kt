@@ -1,6 +1,6 @@
 package com.testpois.features.getPois.domain.usecases
 
-import com.testpois.features.getPois.repositories.PoisRepository
+import com.testpois.features.getPois.domain.repositories.PoisRepository
 import com.testpois.domain.extensions.DispatcherProvider
 import com.testpois.domain.extensions.DomainError
 import com.testpois.domain.extensions.Either

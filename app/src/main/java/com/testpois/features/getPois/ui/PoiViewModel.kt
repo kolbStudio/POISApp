@@ -1,15 +1,27 @@
 package com.testpois.features.getPois.ui
 
+import android.content.Context
+import android.content.Intent
+import android.location.Geocoder
+import android.net.Uri
+import android.os.Bundle
+import androidx.compose.ui.platform.LocalContext
+import androidx.core.content.ContentProviderCompat.requireContext
+import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.android.gms.maps.model.LatLng
 import com.testpois.domain.extensions.onFailure
 import com.testpois.domain.extensions.onSuccess
 import com.testpois.features.getPois.domain.model.Pois
 import com.testpois.features.getPois.domain.usecases.DeletePoiUseCase
 import com.testpois.features.getPois.domain.usecases.GetAllPoisUseCase
+import com.testpois.ui.common.GEOCODER_RESULTS
 import dagger.hilt.android.lifecycle.HiltViewModel
+import java.io.IOException
+import java.util.*
 import javax.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -62,6 +74,24 @@ class PoiViewModel @Inject constructor(
         deletePoiUseCase.invoke(pois)
         getPois()
         _showConfirmationDialog.value = Pair(false, null)
+    }
+
+    fun openGoogleMaps(address: String, context: Context) {
+        val gmmIntentUri = Uri.parse("geo:0,0?q= $address")
+        val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+        val option : Bundle = Bundle.EMPTY
+        mapIntent.setPackage("com.google.android.apps.maps")
+        startActivity(context, mapIntent, option)
+    }
+
+    fun getLocation(address: String, context: Context): LatLng {
+        return try {
+            val geocoder = Geocoder(context, Locale.getDefault())
+            val location = geocoder.getFromLocationName(address, GEOCODER_RESULTS)?.firstOrNull()
+            LatLng(location?.latitude ?: 0.0, location?.longitude ?: 0.0)
+        } catch (ex: IOException) {
+            LatLng(0.0, 0.0)
+        }
     }
 
 }
