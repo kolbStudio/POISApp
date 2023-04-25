@@ -1,12 +1,10 @@
-package com.testpois.features.getPois.ui
+package com.testpois.ui.feature
 
 import android.content.Context
 import android.content.Intent
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
-import androidx.compose.ui.platform.LocalContext
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.content.ContextCompat.startActivity
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -16,8 +14,8 @@ import com.google.android.gms.maps.model.LatLng
 import com.testpois.domain.extensions.onFailure
 import com.testpois.domain.extensions.onSuccess
 import com.testpois.features.getPois.domain.model.Pois
-import com.testpois.features.getPois.domain.usecases.DeletePoiUseCase
-import com.testpois.features.getPois.domain.usecases.GetAllPoisUseCase
+import com.testpois.domain.usecases.DeletePoiUseCase
+import com.testpois.domain.usecases.GetAllPoisUseCase
 import com.testpois.ui.common.GEOCODER_RESULTS
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.io.IOException

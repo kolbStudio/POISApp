@@ -3,7 +3,6 @@ package com.testpois.ui.common
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -14,7 +13,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.AirlineStops
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.Map
 import androidx.compose.material.icons.outlined.MobileFriendly
@@ -60,8 +58,8 @@ import com.google.maps.android.compose.Marker
 import com.google.maps.android.compose.MarkerState
 import com.google.maps.android.compose.rememberCameraPositionState
 import com.testpois.R
-import com.testpois.features.getPois.ui.PoiViewModel
-import com.testpois.features.getPois.ui.SpacerHeight
+import com.testpois.ui.feature.PoiViewModel
+import com.testpois.ui.feature.SpacerHeight
 import com.testpois.ui.theme.TextStadium
 
 const val THREE_THOUSAND_LONG = 3000L

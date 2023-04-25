@@ -7,9 +7,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.testpois.features.getPois.ui.PoiDetailScreen
-import com.testpois.features.getPois.ui.PoiScreen
-import com.testpois.features.getPois.ui.PoiViewModel
+import com.testpois.ui.feature.PoiDetailScreen
+import com.testpois.ui.feature.PoiScreen
+import com.testpois.ui.feature.PoiViewModel
 import com.testpois.ui.model.Routes
 
 @Composable

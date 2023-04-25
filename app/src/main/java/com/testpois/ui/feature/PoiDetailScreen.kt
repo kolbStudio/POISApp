@@ -1,4 +1,4 @@
-package com.testpois.features.getPois.ui
+package com.testpois.ui.feature
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -30,7 +30,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import coil.compose.rememberAsyncImagePainter
-import com.google.android.gms.maps.model.LatLng
 import com.testpois.R
 import com.testpois.ui.common.ShowLocation
 import com.testpois.ui.theme.TextStadium

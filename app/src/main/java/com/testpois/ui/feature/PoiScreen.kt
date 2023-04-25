@@ -1,4 +1,4 @@
-package com.testpois.features.getPois.ui
+package com.testpois.ui.feature
 
 import android.util.Log
 import androidx.compose.foundation.Image
@@ -6,7 +6,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -41,7 +40,6 @@ import com.google.accompanist.swiperefresh.SwipeRefreshIndicator
 import com.google.accompanist.swiperefresh.rememberSwipeRefreshState
 import com.testpois.R
 import com.testpois.features.getPois.domain.model.Pois
-import com.testpois.features.getPois.domain.model.PoisData
 import com.testpois.ui.common.BaseLoadingScreen
 import com.testpois.ui.common.BaseSearchView
 import com.testpois.ui.common.ConfirmationDeleteDialog
