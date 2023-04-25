@@ -9,7 +9,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Scaffold
 import androidx.compose.ui.Modifier
-import com.testpois.features.getPois.ui.PoiViewModel
+import com.testpois.ui.feature.PoiViewModel
 import com.testpois.ui.common.BaseTopBar
 import com.testpois.ui.navigation.AppNavigation
 import com.testpois.ui.theme.TextStadium

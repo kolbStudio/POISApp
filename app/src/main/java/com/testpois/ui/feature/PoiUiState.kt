@@ -1,4 +1,4 @@
-package com.testpois.features.getPois.ui
+package com.testpois.ui.feature
 
 import com.testpois.domain.extensions.DomainError
 import com.testpois.features.getPois.domain.model.Pois
