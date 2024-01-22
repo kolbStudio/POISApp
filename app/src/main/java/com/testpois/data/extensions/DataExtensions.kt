@@ -1,6 +1,6 @@
 package com.testpois.data.extensions
 
-import com.testpois.domain.extensions.DomainError
+import com.testpois.domain.extensions.DataError
 import com.testpois.domain.extensions.Either
 import com.testpois.domain.extensions.eitherFailure
 import com.testpois.domain.extensions.eitherSuccess
@@ -21,14 +21,14 @@ fun <T> Response<T>.mapToApiResponse() : ApiResponse<T> {
     }
 }
 
-fun <T> ApiResponse<T>.toDomain(): Either<T, DomainError> {
+fun <T> ApiResponse<T>.toData(): Either<T, DataError> {
     return when (this) {
         is ApiResponse.Success -> eitherSuccess(this.data)
         is ApiResponse.ServerError,
-        is ApiResponse.BadRequest -> eitherFailure(DomainError.ServerError)
-        is ApiResponse.NoDataResponse -> eitherFailure(DomainError.NoDataError)
-        is ApiResponse.Timeout -> eitherFailure(DomainError.TimeoutError)
-        is ApiResponse.Unauthorized -> eitherFailure(DomainError.UnauthorizedError(this.errorBody))
-        is ApiResponse.ApiError -> eitherFailure(DomainError.ApiError(this.error))
+        is ApiResponse.BadRequest -> eitherFailure(DataError.ServerError)
+        is ApiResponse.NoDataResponse -> eitherFailure(DataError.NoDataError)
+        is ApiResponse.Timeout -> eitherFailure(DataError.TimeoutError)
+        is ApiResponse.Unauthorized -> eitherFailure(DataError.UnauthorizedError(this.errorBody))
+        is ApiResponse.ApiError -> eitherFailure(DataError.ApiError(this.error))
     }
 }

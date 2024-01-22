@@ -3,9 +3,8 @@ package com.testpois.data.repository
 import com.testpois.data.dataSource.PoisLocalDataSource
 import com.testpois.data.dataSource.PoisRemoteDataSource
 import com.testpois.data.mappers.toDomain
-import com.testpois.domain.extensions.DomainError
+import com.testpois.domain.extensions.DataError
 import com.testpois.domain.extensions.Either
-import com.testpois.domain.extensions.eitherFailure
 import com.testpois.domain.extensions.eitherSuccess
 import com.testpois.domain.extensions.getOrNull
 import com.testpois.features.getPois.domain.model.Pois
@@ -17,7 +16,7 @@ class PoisRepositoryImpl @Inject constructor(
     private val poisLocalDataSource: PoisLocalDataSource
 ) : PoisRepository {
 
-    override suspend fun getPois(forceRefresh: Boolean): Either<List<Pois>, DomainError> {
+    override suspend fun getPois(forceRefresh: Boolean): Either<List<Pois>, DataError> {
         if (forceRefresh) deleteLocalPois()
         val localPois = poisLocalDataSource.getPoisFromDb()
         return if (localPois.isNotEmpty()) eitherSuccess(localPois.map { it.toDomain() })
