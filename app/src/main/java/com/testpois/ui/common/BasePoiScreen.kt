@@ -3,9 +3,11 @@ package com.testpois.ui.common
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -62,9 +64,6 @@ import com.testpois.ui.feature.PoiViewModel
 import com.testpois.ui.feature.SpacerHeight
 import com.testpois.ui.theme.TextStadium
 
-const val THREE_THOUSAND_LONG = 3000L
-const val FIVE_THOUSAND_MILLIS = 5000
-const val ONE_F = 1f
 const val FIFTEEN_F = 15f
 const val GEOCODER_RESULTS = 10
 
@@ -72,12 +71,13 @@ const val GEOCODER_RESULTS = 10
 fun BaseLoadingScreen() {
     Column(
         modifier = Modifier
-            .wrapContentHeight()
-            .wrapContentSize(Alignment.Center),
+            .fillMaxSize()
+            .wrapContentSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.SpaceEvenly
     ) {
         CircularProgressIndicator(
+            color = Color.White,
             strokeWidth = 4.dp
         )
     }
@@ -100,7 +100,6 @@ fun BaseTopBar() {
     )
 }
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun BaseSearchView(state: MutableState<TextFieldValue>) {
     TextField(
@@ -113,7 +112,7 @@ fun BaseSearchView(state: MutableState<TextFieldValue>) {
         leadingIcon = {
             Icon(
                 Icons.Default.Search,
-                tint=colorResource(id = R.color.primary_color),
+                tint = colorResource(id = R.color.primary_color),
                 contentDescription = "",
                 modifier = Modifier
                     .padding(15.dp)
@@ -130,7 +129,7 @@ fun BaseSearchView(state: MutableState<TextFieldValue>) {
                 ) {
                     Icon(
                         Icons.Rounded.Close,
-                        tint=colorResource(id = R.color.primary_color),
+                        tint = colorResource(id = R.color.primary_color),
                         contentDescription = "",
                         modifier = Modifier
                             .size(24.dp)
@@ -140,10 +139,10 @@ fun BaseSearchView(state: MutableState<TextFieldValue>) {
         },
         singleLine = true,
         shape = RectangleShape,
-        colors = TextFieldDefaults.textFieldColors(
-            textColor = TextStadium,
+        colors = TextFieldDefaults.colors(
+            focusedTextColor = TextStadium,
             cursorColor = TextStadium,
-            containerColor = Color.White,
+            focusedContainerColor = Color.White,
             focusedIndicatorColor = Color.Transparent,
             unfocusedIndicatorColor = Color.Transparent,
             disabledIndicatorColor = Color.Transparent
